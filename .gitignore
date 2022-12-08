@@ -1,0 +1,15 @@
+
+*.log
+*.recipe
+*.ilk
+*.pch
+*.obj
+*.lastbuildstate
+*.tlog
+*.idb
+*.pdb
+x64/Debug/AdventOfCode2022.vcxproj.FileListAbsolute.txt
+AdventOfCode2022.vcxproj.user
+*.iobj
+*.ipdb
+x64/Release/AdventOfCode2022.vcxproj.FileListAbsolute.txt
