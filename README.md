@@ -7,9 +7,9 @@ Pretty straight forward step:
 
 Add a new item as a new CPP Source file, called main.cpp.
 
-![[Pasted image 20221202101011.png]]
+![Pasted image 20221202101011](https://user-images.githubusercontent.com/14072620/206445947-31654e33-4ba8-463e-975d-a4dc24ceceed.png)
 
-![[Pasted image 20221202101047.png]]
+![Pasted image 20221202101047](https://user-images.githubusercontent.com/14072620/206445977-0e29dbe6-5f45-4dc4-b224-2e5acd3d03b2.png)
 
 # Entry point code
 
@@ -55,10 +55,10 @@ The advantage of using these pre-compiled headers is also that these files are n
 
 - add 2 files (stdafx.h and stdafx.cpp, default names)
 - right click on the solution, and go to properties. Under C/C++, select Precompiled Headers, and change to **Use (/Yu)**
-![[Pasted image 20221202104441.png]]
+![Pasted image 20221202104441](https://user-images.githubusercontent.com/14072620/206446031-102e662b-8c3f-47ff-87ae-cc1175b1c84c.png)
 - Edit stdafx.cpp and add `#include "stdafx.h"`
 - Edit stdafx.h and add `#include <iostream>`
 - right click on stdafx.cpp, and go to properties. Under C/C++, select Precompiled Headers, and change to **Create (/Yc)**
-![[Pasted image 20221202104756.png]]
+![Pasted image 20221202104756](https://user-images.githubusercontent.com/14072620/206446078-a92aa2b7-a5ef-40d1-8f35-6ea76c16b748.png)
 - You **MUST** now use `#include "stdafx.h"` in all of your source files.
 
