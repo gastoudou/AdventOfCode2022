@@ -42,7 +42,8 @@ end
 
 
 First, we know already the answer to the puzzle given in the example
-![[Pasted image 20221202110448.png]]
+
+![Pasted image 20221202110448](https://user-images.githubusercontent.com/14072620/206482855-58ca46a3-a43b-4c7b-9b57-7f5826952ea7.png)
 
 In this case, we will start with these inputs, and try to have a working algorithm before starting with the real inputs.
 
@@ -50,9 +51,9 @@ In this case, we will start with these inputs, and try to have a working algorit
 - edit to add `#include "stdafx.h"`
 - add `void Day1() { }` . This is the famous definition necessary to compile, after having a first extern declaration in main.cpp
 - we need to add the inputs, let's just use a fixed array of string. We are using string in this case, because we will receive the real inputs as text soon.
-![[Pasted image 20221202114117.png]]
+![Pasted image 20221202114117](https://user-images.githubusercontent.com/14072620/206482957-fb69784b-381a-44ca-8591-d61acede7351.png)
 - we will need to add the vector and string reference to the stdafx.h file first, as we will use them to store elves, or using the string library.
-![[Pasted image 20221202113339.png]]
+![Pasted image 20221202113339](https://user-images.githubusercontent.com/14072620/206483014-170a5d59-596e-4a4d-82ac-29d6dc64c696.png)
 - now, we need to add a dynamic array (std::vector) to store for each elf (represented by the line in the array) the number of calories brought with `std::vector< uint32_t > calories_per_elf;`
 - we should initialize everything first wit `uint32_t sum = 0u;`
 - we can read the inputs, and start to loop, adding the read value to a sum. The value we are receiving is a text, so the function `atoi` will transform the text in integer (if valid of course)
@@ -96,15 +97,14 @@ auto set_sum = [ & ] ()
 };
 ```
 - last thing is to display on screen that we have calculated, to validate the algorithm.
-![[Pasted image 20221202114841.png]]
-
+![Pasted image 20221202114841](https://user-images.githubusercontent.com/14072620/206483064-7f000540-3c81-4133-b154-59ef7fcc5573.png)
 
 The algorithm should look like that
+![Pasted image 20221202121308](https://user-images.githubusercontent.com/14072620/206483100-341460e5-32f8-4f0c-9026-e0ed761981f1.png)
 
-![[Pasted image 20221202121308.png]]
+Let's run it and see
+![Pasted image 20221202121444](https://user-images.githubusercontent.com/14072620/206483139-924fbd2e-7294-46a6-a5ab-738a283f905e.png)
 
-Let's run it and see:
-![[Pasted image 20221202121444.png]]
 Sounds good!
 
 Now, we need to change the inputs, to receive a file instead of the string array.
@@ -113,17 +113,19 @@ Check documentation here: https://cplusplus.com/reference/cstdio/fopen/
 
 First, we need to download the inputs, and put the file at the same level than the project.
 
-![[Pasted image 20221202122159.png]]
+![Pasted image 20221202122159](https://user-images.githubusercontent.com/14072620/206483196-6f577603-a13a-4294-b953-607053d1a894.png)
+
 
 And save the file here
 
-![[Pasted image 20221202122406.png]]
+![Pasted image 20221202122406](https://user-images.githubusercontent.com/14072620/206483218-3ecdc3c7-2fb7-4b99-a74d-86bb5a3c162b.png)
+
 
 The code is starting to be messy, let's refactor to have 3 functions, one to load, one to process, one to display.
 
-![[Pasted image 20221202132452.png]]
+![Pasted image 20221202132452](https://user-images.githubusercontent.com/14072620/206483237-bdc26cef-bea7-416e-9341-d24e674c8bbf.png)
 
-![[Pasted image 20221202132504.png]]
+![Pasted image 20221202132504](https://user-images.githubusercontent.com/14072620/206483255-d799e508-325b-48ca-bb21-8f90fac5ba0c.png)
 
 `const std::vector< std::string > load_inputs()`
 `void process( const std::vector< std::string >& inputs, data& data )`
@@ -131,16 +133,17 @@ The code is starting to be messy, let's refactor to have 3 functions, one to loa
 
 And now, we are loading the real inputs
 
-![[Pasted image 20221202132708.png]]
+![Pasted image 20221202132708](https://user-images.githubusercontent.com/14072620/206483289-3d12463e-81ea-405f-b703-4215d6827c41.png)
 
 We are receiving ALL characters from the file, even the special characters. That's why we need to clear (remove the last one) before storing in the input array.
 
 Let's compile and run it
-![[Pasted image 20221202132859.png]]
+
+![Pasted image 20221202132859](https://user-images.githubusercontent.com/14072620/206483326-1f512e9f-47ad-4bbe-bceb-cb567ebf90ac.png)
 
 So now, it's time to send it to see if it's working fine?
 
-![[Pasted image 20221202132341.png]]
+![Pasted image 20221202132341](https://user-images.githubusercontent.com/14072620/206483470-b7488988-631c-4250-8344-735633b23637.png)
 
 ALL GOOD!! Let's go to part 2.
 
@@ -178,15 +181,16 @@ The add is also modified to be align with the new structure
 `data.calories_per_elf.push_back( std::make_pair( data.elf_id, data.sum ) );`
 
 We can now, at the end of the process just sort descending and retrieve the first 3.
-![[Pasted image 20221202135525.png]]
+![Pasted image 20221202135525](https://user-images.githubusercontent.com/14072620/206483515-75959fc5-19f5-4e84-93b1-7c2ecec8f908.png)
 
 Test with the test data is good.
 
-![[Pasted image 20221202135559.png]]
+![Pasted image 20221202135559](https://user-images.githubusercontent.com/14072620/206483535-5eb9a548-2a50-422e-afaf-c6f86a71620e.png)
 
 Test with real data inputs
-![[Pasted image 20221202135734.png]]
 
-![[Pasted image 20221202135755.png]]
+![Pasted image 20221202135734](https://user-images.githubusercontent.com/14072620/206483582-eee0456b-a865-479e-bf1d-b88a07f8939a.png)
+
+![Pasted image 20221202135755](https://user-images.githubusercontent.com/14072620/206483601-22f6b5a9-82db-446f-91f4-2d828543ba21.png)
 
 Let's go to day 2.
