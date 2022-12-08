@@ -16,7 +16,7 @@ Add a new item as a new CPP Source file, called main.cpp.
 Put the code inside the main.cpp file:
 
 ```
-``` #include <iostream>
+#include <iostream>
 
 extern void Day1();
 
