@@ -22,10 +22,10 @@ extern void Day1();
 
 int main()
 {
-Day1();
+  Day1();
 
-system( "pause" ); // only for windows
-return 0;
+  system( "pause" ); // only for windows
+  return 0;
 }
 ```
 
