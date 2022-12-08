@@ -2,21 +2,11 @@
 
 // #define TEST_DATA 1
 
-namespace day_2
+namespace day_2_part_1
 {
 	struct data
 	{
 		int score = 0u;
-
-		std::map< char, int > shapes_map
-		{
-			{'A', 0},
-			{'B', 1},
-			{'C', 2},
-			{'X', 0},
-			{'Y', 1},
-			{'Z', 2}
-		};
 
 		std::map< std::string, int > results_map
 		{
@@ -77,9 +67,6 @@ namespace day_2
 
 		for ( auto input : inputs )
 		{
-			const auto opponent_choice = input[ 0 ];
-			const auto my_choice = input[ 2 ];
-
 			data.score += data.results_map[ input ];
 		}
 	}
@@ -90,10 +77,10 @@ namespace day_2
 	}
 }
 
-void day_2_run()
+void day_2_run_part_1()
 {
-	day_2::data data;
+	day_2_part_1::data data;
 
-	day_2::process( day_2::load_inputs(), data );
-	day_2::display_result( data );
+	day_2_part_1::process( day_2_part_1::load_inputs(), data );
+	day_2_part_1::display_result( data );
 }
