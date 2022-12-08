@@ -2,19 +2,25 @@ The program is ready, let's write the first challenge.
 
 https://adventofcode.com/2022/day/1
 
-# 1 - Read the context
+# 1 - Part I
+
+## a. Read the context
+
 We have a data list, representing calories, 1 line = 1 calorie value.
 We have a blank line to separate the elves inventories.
 
-# 2 - Question
+## b. Question
+
 Find the Elf carrying the most Calories. How many total Calories is that Elf carrying?
 
-# 3 - What to do
+## c. What to do
+
 In this case, we have a list of inventories, and we need to sum each lines per elf.
 Which means that we need to go through all data, and add each line to the previous ones, except if it is a blank line and in this case we will change to a new elf.
 Then, we need to sort by value to know which elf has the highest value.
 
-# 4 - How to do
+## d. How to do
+
 This is a typical case of ***break*** algorithm.
 We are looping of the input, add the value, and ***break*** if there's a change (blank line -> switch elf)
 
@@ -32,7 +38,8 @@ do
 end
 ```
 
-# 5 - Let's roll
+## e. Let's roll
+
 
 First, we know already the answer to the puzzle given in the example
 ![[Pasted image 20221202110448.png]]
@@ -137,10 +144,32 @@ So now, it's time to send it to see if it's working fine?
 
 ALL GOOD!! Let's go to part 2.
 
-# 6 - Part II
+# 2 - Part II
+
+## a. Read the context
 
 Using the same inputs, and same algorithm, we are extending it.
 The idea is to find the best 3.
+
+## b. Question
+
+What are the best 3 elves carrying calories?
+
+## c. What to do
+
+In the same algorithm, we are modifying the structure saving the calories to be able to sort per calories value and save the elf ID.
+Then, we will return the first 3.
+
+## d. How to do
+
+```
+< part I >
+
+sort the array
+retrieve the first 3
+```
+
+## e. Let's roll
 
 So, we are changing the calories_per_elf structure, to be able to sort it and save the IDs.
 `std::vector< std::pair< uint32_t, uint32_t > > calories_per_elf;`
@@ -161,243 +190,3 @@ Test with real data inputs
 ![[Pasted image 20221202135755.png]]
 
 Let's go to day 2.
-
-# 7 - Annex: Final Code Listing - part 1
-
-```
-#include "stdafx.h"
-
-// #define TEST_DATA 1
-
-struct data
-{
-	std::vector< uint32_t > calories_per_elf;
-
-	uint32_t sum = 0u;
-	uint32_t elf_id = 0u;
-	uint32_t biggestcalories_provider_elf_id = 0u;
-	uint32_t biggest_calories = 0u;
-};
-
-const std::vector< std::string > load_inputs()
-{
-#ifdef TEST_DATA
-	const std::vector< std::string > test_inputs =
-	{
-		"1000",
-		"2000",
-		"3000",
-		"",
-		"4000",
-		"",
-		"5000",
-		"6000",
-		"",
-		"7000",
-		"8000",
-		"9000",
-		"",
-		"10000"
-	};
-	return test_inputs;
-#else
-	std::vector< std::string > real_inputs;
-
-	FILE* real_inputs_file;
-	auto result = fopen_s( &real_inputs_file, "data/day1/input.txt", "r" );
-
-	if ( result == 0 )
-	{
-		char buffer[ 128 ];
-		char* read;
-		while ( read = fgets( buffer, 128, real_inputs_file))
-		{
-			std::string line( read );
-			line = line.substr( 0, line.size() - 1 ); // remove /n
-			real_inputs.push_back( line );
-		}
-		fclose( real_inputs_file ); // ALWAYS CLOSE AN OPENED FILE
-	}
-	return real_inputs;
-#endif
-}
-
-void process( const std::vector< std::string >& inputs, data& data )
-{
-	auto set_sum = [&] ()
-	{
-		if ( data.biggest_calories < data.sum )
-		{
-			data.biggest_calories = data.sum;
-			data.biggestcalories_provider_elf_id = data.elf_id;
-		}
-
-		data.calories_per_elf.push_back( data.sum );
-		data.sum = 0;
-		data.elf_id++;
-	};
-
-	for ( size_t i = 0u; i < inputs.size(); ++i )
-	{
-		const std::string& line = inputs[ i ];
-		if ( line.empty() )
-		{
-			set_sum();
-		}
-		else
-		{
-			data.sum += static_cast< uint32_t >( atoi( line.c_str() ) );
-		}
-	}
-	set_sum();
-}
-
-void display_result( data& data )
-{
-	std::cout << "Verification:" << std::endl;
-	std::cout << "Number of elves: " << data.elf_id << std::endl;
-	for ( auto val : data.calories_per_elf )
-	{
-		std::cout << val << std::endl;
-	}
-	std::cout << "Biggest calories are: " << data.biggest_calories << " by: " << data.biggestcalories_provider_elf_id << std::endl;
-}
-
-void Day1()
-{
-	data data;
-
-	process( load_inputs(), data );
-	display_result( data );
-}
-```
-
-# 8 - Annex: Final Code Listing - part 2
-```
-#include "stdafx.h"
-
-// #define TEST_DATA 1
-
-struct data
-{
-	std::vector< std::pair< uint32_t, uint32_t > > calories_per_elf;
-
-	uint32_t sum = 0u;
-	uint32_t elf_id = 0u;
-	uint32_t biggestcalories_provider_elf_id = 0u;
-	uint32_t biggest_calories = 0u;
-};
-
-const std::vector< std::string > load_inputs()
-{
-#ifdef TEST_DATA
-	const std::vector< std::string > test_inputs =
-	{
-		"1000",
-		"2000",
-		"3000",
-		"",
-		"4000",
-		"",
-		"5000",
-		"6000",
-		"",
-		"7000",
-		"8000",
-		"9000",
-		"",
-		"10000"
-	};
-
-	return test_inputs;
-#else
-
-	std::vector< std::string > real_inputs;
-
-	FILE* real_inputs_file;
-	auto result = fopen_s( &real_inputs_file, "data/day1/input.txt", "r" );
-
-	if ( result == 0 )
-	{
-		char buffer[ 128 ];
-		char* read;
-		while ( read = fgets( buffer, 128, real_inputs_file))
-		{
-			std::string line( read );
-			line = line.substr( 0, line.size() - 1 ); // remove /n
-			real_inputs.push_back( line );
-		}
-		fclose( real_inputs_file ); // ALWAYS CLOSE AN OPENED FILE
-	}
-
-	return real_inputs;
-
-#endif
-}
-
-void process( const std::vector< std::string >& inputs, data& data )
-{
-	auto set_sum = [&] ()
-	{
-		if ( data.biggest_calories < data.sum )
-		{
-			data.biggest_calories = data.sum;
-			data.biggestcalories_provider_elf_id = data.elf_id;
-		}
-
-		data.calories_per_elf.push_back( std::make_pair( data.elf_id, data.sum ) );
-		data.sum = 0;
-		data.elf_id++;
-	};
-
-	for ( size_t i = 0u; i < inputs.size(); ++i )
-	{
-		const std::string& line = inputs[ i ];
-		if ( line.empty() )
-		{
-			set_sum();
-		}
-		else
-		{
-			data.sum += static_cast< uint32_t >( atoi( line.c_str() ) );
-		}
-	}
-	set_sum();
-
-	std::sort( data.calories_per_elf.begin(), data.calories_per_elf.end(),
-	[] ( const auto& left, const auto& right )
-		{
-			return left.second > right.second;
-		}
-	);
-}
-
-void display_result( data& data )
-{
-	std::cout << "Verification:" << std::endl;
-	std::cout << "Number of elves: " << data.elf_id << std::endl;
-	for ( auto val : data.calories_per_elf )
-	{
-		std::cout << "[" << val.first << "]" << val.second << std::endl;
-	}
-	std::cout << "Biggest calories are: " << data.biggest_calories << " by: "
-	 << data.biggestcalories_provider_elf_id << std::endl;
-
-	auto sum_best_3 = data.calories_per_elf[ 0 ].second
-	 + data.calories_per_elf[ 1 ].second
-	 + data.calories_per_elf[ 2 ].second;
-	std::cout << "The best 3 are: " << std::endl;
-	std::cout << data.calories_per_elf[ 0 ].first << std::endl;
-	std::cout << data.calories_per_elf[ 1 ].first << std::endl;
-	std::cout << data.calories_per_elf[ 2 ].first << std::endl;
-	std::cout << "for a total of " << sum_best_3 << std::endl;
-}
-
-void Day1()
-{
-	data data;
-
-	process( load_inputs(), data );
-	display_result( data );
-}
-```

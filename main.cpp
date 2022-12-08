@@ -1,10 +1,11 @@
 #include "stdafx.h"
 
-extern void Day1();
+extern void day_1_run();
+extern void day_2_run();
 
 int main()
 {
-	Day1();
+	day_2_run();
 
 	system( "pause" ); // only for windows
 	return 0;
