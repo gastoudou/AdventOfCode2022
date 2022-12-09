@@ -91,24 +91,26 @@ Now we have the converting code, let's read the inputs, split and search.
 This is not optimized at all, but brute force is working here.
 
 ```
-	for ( auto line : inputs )
+for ( auto line : inputs )
+{
+	size_t half_size = line.size() / 2;
+	for ( size_t i = 0u; i < half_size; ++i )
 	{
-		size_t half_size = line.size() / 2;
-		for ( size_t i = 0u; i < half_size; ++i )
+		auto it_search = std::find( line.cbegin() + half_size, line.cend(), line[i]); // search in the second half
+		if( it_search != line.cend() ) // we found something
 		{
-			auto it_search = std::find( line.cbegin() + half_size, line.cend(), line[i]); // search in the second half
-			if( it_search != line.cend() ) // we found something
-			{
-				data.score += convert( line[ i ] );
-				break;
-			}
+			data.score += convert( line[ i ] );
+			break;
 		}
 	}
+}
 ```
 
-Validation with test data : 157. All good.
-Try with real data now.
+Validation with test data : 157. All good!
 
+Let's try with real data now.
+
+![day3_part1_star](https://user-images.githubusercontent.com/14072620/206675627-48881065-bdc4-4c28-acda-477b2b28e3c7.jpg)
 
 # 2 - Part II
 
