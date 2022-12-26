@@ -30,7 +30,7 @@ namespace day_6_part_1
 		if ( result == 0 )
 		{
 			char c;
-			while ( ( c = fgetc( real_inputs_file ) ) != EOF )
+			while ( ( c = (char) fgetc( real_inputs_file ) ) != EOF )
 			{
 				real_inputs += c;
 			}

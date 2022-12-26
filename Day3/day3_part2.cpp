@@ -36,12 +36,13 @@ namespace day_3_part_2
 		if ( result == 0 )
 		{
 			char buffer[ 128 ];
-			char* read;
-			while ( read = fgets( buffer, 128, real_inputs_file ) )
+			char* read = fgets( buffer, 128, real_inputs_file );
+			while ( read )
 			{
 				std::string line( read );
 				line = line.substr( 0, line.size() - 1 ); // remove /n
 				real_inputs.push_back( line );
+				read = fgets( buffer, 128, real_inputs_file );
 			}
 			fclose( real_inputs_file ); // ALWAYS CLOSE AN OPENED FILE
 		}
@@ -70,7 +71,7 @@ namespace day_3_part_2
 		{
 			mask &= chars_bitset;
 		}
-		size_t id = 0u;
+
 		for ( int bit = 0; bit < BITSET_SIZE; ++bit )
 		{
 			if ( mask[ bit ] == 1 )

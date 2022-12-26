@@ -60,6 +60,12 @@
     <ClCompile Include="Day6\day6_part2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Day7\day7_part1.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Day7\day7_part2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -70,5 +76,6 @@
     <None Include="Day3\Day3.md" />
     <None Include="Day4\Day4.md" />
     <None Include="Day5\Day5.md" />
+    <None Include="Day7\Day7.md" />
   </ItemGroup>
 </Project>
