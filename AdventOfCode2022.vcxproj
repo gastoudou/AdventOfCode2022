@@ -148,6 +148,8 @@
     <ClCompile Include="Day6\day6_part2.cpp" />
     <ClCompile Include="Day7\day7_part1.cpp" />
     <ClCompile Include="Day7\day7_part2.cpp" />
+    <ClCompile Include="Day8\day8_part1.cpp" />
+    <ClCompile Include="Day8\day8_part2.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -164,6 +166,9 @@
     <None Include="Day4\Day4.md" />
     <None Include="Day5\Day5.md" />
     <None Include="Day7\Day7.md" />
+    <None Include="Day8\Day8.md">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
