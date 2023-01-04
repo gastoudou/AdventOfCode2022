@@ -209,4 +209,4 @@ Test with real data inputs
 
 ![Pasted image 20221202135755](https://user-images.githubusercontent.com/14072620/206483601-22f6b5a9-82db-446f-91f4-2d828543ba21.png)
 
-Let's go to day 2.
+Let's go to [Day 2](https://github.com/gastoudou/AdventOfCode2022/blob/main/Day2/Day2.md).
