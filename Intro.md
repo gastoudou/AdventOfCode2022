@@ -29,7 +29,7 @@ int main()
 }
 ```
 
-We are now ready for Day 1.
+We are now ready for [Day 1](https://github.com/gastoudou/AdventOfCode2022/blob/main/Day1/Day1.md).
 
 # Code explanation
 
